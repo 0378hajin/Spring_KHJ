@@ -64,7 +64,8 @@ public class BoardController {
 			
 			pw.flush();
 		} else {
-			pw.append("<script>alert('작성이 정상적으로 등록이 되었습니다.');location.href = 'list.do'</script>");
+			//등록이 제대로 이루어짐
+			pw.append("<script>alert('작성이 정상적으로 등록이 되었습니다.');location.href = 'view.do?bidx="+vo.getBidx()+"'</script>"); //반환된 bidx가 vo에 담겨 있다.
 			
 			pw.flush();
 		}

@@ -5,6 +5,7 @@
  
 <mapper namespace="edu.Board.mapper.boardMapper">
 	
+	 <!-- parameterType은 보내는 값, resultType은 반환되는 값  -->
 	 <select id = "selectAll" resultType = "BoardVo" parameterType="SearchVo">
 	 	SELECT b.bidx
 	 		 , b.title
@@ -19,13 +20,15 @@
 	 	 AND b.title like '%'||#{searchValue}||'%'
 	 	 </if>
 	 	 <if test='searchType != null and searchType.equals("contentWriter")'>
-	 	 AND b.content like '%'||#{searchValue}||'%'
-	 	  OR u.name like '%'||#{searchValue}||'%'
+	 	 AND (b.content like '%'||#{searchValue}||'%'
+	 	  OR u.name like '%'||#{searchValue}||'%')
 	 	 </if>
 	 	 ORDER BY bidx desc
 	 </select>
 	 
 	 <insert id = "boradWrite" parameterType="BoardVo">
+	 <!-- 무조건 sql데이터라고 알리는 CDATA태그 -->
+	 <![CDATA[
 	 	INSERT INTO springboard (
 	 			  bidx
 	 			, title
@@ -39,6 +42,11 @@
 	 			, #{midx}
 	 			, sysdate
 	 	)
+	 ]]>
+	 <!-- 현재 insert 되고 있는 컬럼 값을 가져오는 keyProperty, 실행 시점을 나타나는 order -->
+	 <selectKey resultType = "int" keyProperty="bidx" order = "AFTER">
+	 	SELECT max(bidx) FROM springboard
+	 </selectKey>
 	 </insert>
 	 
 	 <select id = "selectOne" resultType ="boardVo" parameterType = "int">

@@ -27,6 +27,8 @@
 	<a href = "user/mypage.do">마이페이지</a> |
 	<a href = "user/logout.do">로그아웃</a> |
 </c:if>
-<a href = "board/list.do">게시판으로 이동하기</a>
+<a href = "board/list.do">게시판으로 이동하기</a> |
+<a href = "ajax/sample.do">ajax 예제로 이동하기</a>
+
 </body>
 </html>
