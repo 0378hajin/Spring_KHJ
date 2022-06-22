@@ -23,6 +23,10 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!--  spring-upload -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
+	<!--  spring-upload -->
+	
 	<context:component-scan base-package="edu.Board.controller" />
 	<context:component-scan base-package="edu.Board.serivce" />
 	<context:component-scan base-package="edu.Board.dao" />
